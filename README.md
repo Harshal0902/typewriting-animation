@@ -7,7 +7,6 @@ A customizable and lightweight typewriter animation JavaScript library that allo
   - [NPM](#npm)
 - [Usage](#usage)
   - [React](#usage-react)
-- [Options](#options)
 - [Bug Reporting](#bug-reporting)
 - [Feature Request](#feature-request)
 - [Release Notes](#release-notes)
@@ -31,9 +30,7 @@ Customizable typewriter animation with the following features:
 
 <a id="npm"></a>
 
-<!-- ### NPM
-
-> _You might need to use a module bundler such as webpack, rollup, parcel, etc._
+### NPM
 
 #### Installation
 
@@ -41,35 +38,37 @@ Customizable typewriter animation with the following features:
 npm i typewriting-animation
 ```
 
-#### Import
-
-```javascript
-import { typewriter } from 'typewriting-animation';
-
-``` -->
-
 <a id="usage"></a>
 
 ## 🔨 Usage
 
 <a id="usage-react"></a>
 
-<!--
-
 ### React
 
-[Example](https://codesandbox.io/s/) -->
+```javascript
+import { useTypewriterEffect } from "typewriting-animation";
 
-<a id="options"></a>
+function App() {
+  const { typedString, selectedString } = useTypingEffect([
+    "add your own custom characters",
+    "control the speed of the animation",
+    " Control the delay between each character",
+    "Control the looping of the animation",
+    "Decide the type of cursor to use",
+  ]);
 
-## ⚙️ Options
+  return (
+    <div>
+      <div className="blinking-cursor" aria-label={selectedString}>
+        typewriting-animation allows you to {typedString}
+      </div>
+    </div>
+  );
+}
+```
 
-<!-- ### Custom Characters
-
-Type: `string`
-Default: `string`
-
-Custom characters. -->
+<!-- [Example](https://codesandbox.io/s/) -->
 
 <a id="bug-reporting"></a>
 
