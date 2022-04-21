@@ -1,6 +1,19 @@
-# Typewriter Animation
+# typewriting-animation
 
 A customizable and lightweight typewriter animation JavaScript library that allows you to add your own custom characters, control the speed of the animation, control the delay between each character, and control the looping of the animation to decide the type of cursor to use.
+
+<p>
+  <a href="https://www.npmjs.com/package/typewriting-animation">
+    <img src="https://img.shields.io/npm/v/typewriting-animation?style=flat-square" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/typewriting-animation">
+    <img src="https://img.shields.io/npm/dw/typewriting-animation?style=flat-square" alt="npm downloads" />
+  </a>
+  <a href="https://www.npmjs.com/package/typewriting-animation">
+    <img src="https://img.shields.io/bundlephobia/min/typewriting-animation?style=flat-square" alt="size" />
+  </a>
+    <img src="https://img.shields.io/npm/l/typewriting-animation?style=flat-square" alt="license" />
+</p>
 
 - [Features](#features)
 - [Build using](#build-using)
@@ -25,8 +38,6 @@ Customizable typewriter animation with the following features:
 - Control the looping of the animation
 - Decide the type of cursor to use
 
-<a id="features"></a>
-
 <a id="build-using"></a>
 
 ## ⚙️ Build using
@@ -34,7 +45,11 @@ Customizable typewriter animation with the following features:
 - React
 - TypeScript
 - npm
+- Gulp
+- Rollup
 - CircleCI
+
+<a id="getting-started"></a>
 
 ## 📦 Getting Started
 
@@ -60,7 +75,6 @@ npm i typewriting-animation
 import { useTypewriterEffect } from "typewriting-animation";
 
 function App() {
-
   // Add custom words
   const { typedString, selectedString } = useTypewriterEffect([
     "add your own custom characters",
@@ -72,11 +86,9 @@ function App() {
 
   return (
     <div>
-
       <div className="blinking-cursor" aria-label={selectedString}>
         typewriting-animation allows you to {typedString}
       </div>
-      
     </div>
   );
 }
