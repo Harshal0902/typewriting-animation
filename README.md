@@ -3,6 +3,7 @@
 A customizable and lightweight typewriter animation JavaScript library that allows you to add your own custom characters, control the speed of the animation, control the delay between each character, and control the looping of the animation to decide the type of cursor to use.
 
 - [Features](#features)
+- [Build using](#build-using)
 - [Getting Started](#getting-started)
   - [NPM](#npm)
 - [Usage](#usage)
@@ -24,7 +25,16 @@ Customizable typewriter animation with the following features:
 - Control the looping of the animation
 - Decide the type of cursor to use
 
-<a id="getting-started"></a>
+<a id="features"></a>
+
+<a id="build-using"></a>
+
+## ⚙️ Build using
+
+- React
+- TypeScript
+- npm
+- CircleCI
 
 ## 📦 Getting Started
 
@@ -50,19 +60,23 @@ npm i typewriting-animation
 import { useTypewriterEffect } from "typewriting-animation";
 
 function App() {
-  const { typedString, selectedString } = useTypingEffect([
+
+  // Add custom words
+  const { typedString, selectedString } = useTypewriterEffect([
     "add your own custom characters",
     "control the speed of the animation",
-    " Control the delay between each character",
-    "Control the looping of the animation",
-    "Decide the type of cursor to use",
+    "control the delay between each character",
+    "control the looping of the animation",
+    "decide the type of cursor to use",
   ]);
 
   return (
     <div>
+
       <div className="blinking-cursor" aria-label={selectedString}>
         typewriting-animation allows you to {typedString}
       </div>
+      
     </div>
   );
 }

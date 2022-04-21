@@ -10,30 +10,30 @@ const typingInterval = 80
 const typingPause = 1200
 const deletingInterval = 50
 
-export const useTypewriterEffect = (myService: string[]): {
+export const useTypewriterEffect = (myString: string[]): {
     typedString: string,
     selectedString: string,
 } => {
     const [selectedIndex, setSelectedIndex] = useState(0)
-    const [typedString, settypedString] = useState('')
+    const [typedString, setTypedString] = useState('')
     const [phase, setPhase] = useState(Phase.Typing)
 
     useEffect(() => {
         switch (phase) {
             case Phase.Typing:
                 {
-                    const nexttypedString = myService[selectedIndex].slice(
+                    const nextTypedString = myString[selectedIndex].slice(
                         0,
                         typedString.length + 1
                     )
 
-                    if (nexttypedString === typedString) {
+                    if (nextTypedString === typedString) {
                         setPhase(Phase.Pausing)
                         return
                     }
 
                     const timeout = setTimeout(() => {
-                        settypedString(nexttypedString)
+                        setTypedString(nextTypedString)
                     }, typingInterval)
 
                     return () => clearTimeout(timeout)
@@ -42,18 +42,18 @@ export const useTypewriterEffect = (myService: string[]): {
                 {
                     if (!typedString) {
                         const nextIndex = selectedIndex + 1
-                        setSelectedIndex(myService[nextIndex] ? nextIndex : 0)
+                        setSelectedIndex(myString[nextIndex] ? nextIndex : 0)
                         setPhase(Phase.Typing)
                         return
                     }
 
-                    const nextRemaining = myService[selectedIndex].slice(
+                    const nextRemaining = myString[selectedIndex].slice(
                         0,
                         typedString.length - 1
                     )
 
                     const timeout = setTimeout(() => {
-                        settypedString(nextRemaining)
+                        setTypedString(nextRemaining)
                     }, deletingInterval)
 
                     return () => clearTimeout(timeout)
@@ -67,8 +67,8 @@ export const useTypewriterEffect = (myService: string[]): {
                 return () => clearTimeout(timeout)
         }
 
-    }, [myService, typedString, phase, selectedIndex])
+    }, [myString, typedString, phase, selectedIndex])
 
-    return { typedString, selectedString: myService[selectedIndex] }
+    return { typedString, selectedString: myString[selectedIndex] }
 
 }
