@@ -1,6 +1,6 @@
 # Typewriter Animation
 
-A lightweight customizable typewriter animation component library.
+A customizable and lightweight typewriter animation JavaScript library that allows you to add your own custom characters, control the speed of the animation, control the delay between each character, and control the looping of the animation to decide the type of cursor to use.
 
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -38,13 +38,13 @@ Customizable typewriter animation with the following features:
 #### Installation
 
 ```bash
-npm i typewriter-animation
+npm i typewriting-animation
 ```
 
 #### Import
 
 ```javascript
-import { typewriter } from 'typewriter-animation';
+import { typewriter } from 'typewriting-animation';
 
 ``` -->
 
@@ -75,24 +75,24 @@ Custom characters. -->
 
 ## 🐛 Bug Reporting
 
-Feel free to [open an issue](https://github.com/Harshal0902/typewriter-animation/issues) on GitHub if you find any bug.
+Feel free to [open an issue](https://github.com/Harshal0902/typewriting-animation/issues) on GitHub if you find any bug.
 
 <a id="feature-request"></a>
 
 ## ⭐ Feature Request
 
-- Feel free to [Open an issue](https://github.com/Harshal0902/typewriter-animation/issues) on GitHub to request any additional features you might need for your use case.
+- Feel free to [Open an issue](https://github.com/Harshal0902/typewriting-animation/issues) on GitHub to request any additional features you might need for your use case.
 
 <a id="release-notes"></a>
 
 ## 📋 Release Notes
 
-Check [here](https://github.com/Harshal0902/typewriter-animation/releases) for release notes.
+Check [here](https://github.com/Harshal0902/typewriting-animation/releases) for release notes.
 
 <a id="license"></a>
 
 ## 📜 License
 
-This software is open-source, licensed under the [MIT License](https://github.com/Harshal0902/typewriter-animation/blob/main/LICENSE).
+This software is open-source, licensed under the [MIT License](https://github.com/Harshal0902/typewriting-animation/blob/main/LICENSE).
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/Harshal0902)
