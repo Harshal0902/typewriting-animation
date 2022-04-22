@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/64153988/164770549-f0f5d765-c765-4251-b111-b938212ef7a4.gif" alt="npm version" />
+</p>
+
 # typewriting-animation
 
 A customizable and lightweight typewriter animation JavaScript library that allows you to add your own custom characters, control the speed of the animation, control the delay between each character, and control the looping of the animation to decide the type of cursor to use.
