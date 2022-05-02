@@ -1,1 +1,1 @@
-export * from "./typewriter-effect"
+export { useTypewriterEffect } from "./typewriter-effect"

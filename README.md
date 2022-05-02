@@ -46,12 +46,10 @@ Customizable typewriter animation with the following features:
 
 ## ⚙️ Build using
 
-- React
 - TypeScript
 - npm
 - Gulp
 - Rollup
-- CircleCI
 
 <a id="getting-started"></a>
 
