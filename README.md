@@ -74,17 +74,29 @@ npm i typewriting-animation
 ### React
 
 ```javascript
-import { useTypewriterEffect } from "typewriting-animation";
+import React from 'react';
+import { useTypewriterEffect } from 'typewriting-animation';
 
 function App() {
-  // Add custom words
-  const { typedString, selectedString } = useTypewriterEffect([
-    "add your own custom characters",
-    "control the speed of the animation",
-    "control the delay between each character",
-    "control the looping of the animation",
-    "decide the type of cursor to use",
-  ]);
+  const {
+    typedString,
+    selectedString,
+  } = useTypewriterEffect(
+    [
+      "add your own custom characters",
+      "control the speed of the animation",
+      "control the delay between each character",
+      "control the looping of the animation",
+      "decide the type of cursor to use",
+    ],
+    // Otpional for customizing the animation
+    {
+      speed: 30, // Set your desired animation speed in milliseconds
+      delay: 2000, // Set the delay between sentences in milliseconds
+      loop: false, // Set to true if you want the animation to loop
+      cursor: '_', // Set your desired cursor character
+    }
+  );
 
   return (
     <div>
@@ -94,6 +106,9 @@ function App() {
     </div>
   );
 }
+
+export default App;
+
 ```
 
 <!-- [Example](https://codesandbox.io/s/) -->
