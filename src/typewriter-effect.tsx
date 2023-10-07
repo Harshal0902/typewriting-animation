@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import "./style.scss"
 
 enum Phase {
@@ -7,69 +7,88 @@ enum Phase {
     Deleting,
 }
 
-const typingInterval = 80
-const typingPause = 1200
-const deletingInterval = 50
+interface TypewriterOptions {
+    speed?: number;
+    delay?: number;
+    loop?: boolean;
+    cursor?: string;
+}
 
-export const useTypewriterEffect = (myString: string[]): {
-    typedString: string,
-    selectedString: string,
+const defaultOptions: TypewriterOptions = {
+    speed: 50,
+    delay: 1000,
+    loop: true,
+    cursor: '|',
+};
+
+export const useTypewriterEffect = (
+    inputStrings: string[],
+    options?: TypewriterOptions
+): {
+    typedString: string;
+    selectedString: string;
 } => {
-    const [selectedIndex, setSelectedIndex] = useState(0)
-    const [typedString, setTypedString] = useState('')
-    const [phase, setPhase] = useState(Phase.Typing)
+    const mergedOptions: TypewriterOptions = { ...defaultOptions, ...options };
+    const [typedString, setTypedString] = useState('');
+    const [phase, setPhase] = useState(Phase.Typing);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
+        let timeout: NodeJS.Timeout;
+
+        const currentSentence = inputStrings[currentIndex];
+
         switch (phase) {
-            case Phase.Typing:
-                {
-                    const nextTypedString = myString[selectedIndex].slice(
+            case Phase.Typing: {
+                if (typedString.length < currentSentence.length) {
+                    const nextTypedCharacter = currentSentence.slice(
                         0,
                         typedString.length + 1
-                    )
+                    );
+                    timeout = setTimeout(() => {
+                        setTypedString(nextTypedCharacter);
+                    }, mergedOptions.speed);
+                } else {
+                    setPhase(Phase.Pausing);
+                    timeout = setTimeout(() => {
+                        setPhase(Phase.Deleting);
+                    }, mergedOptions.delay);
+                }
+                break;
+            }
+            case Phase.Deleting: {
+                if (typedString.length > 0) {
+                    const nextRemaining = typedString.slice(0, typedString.length - 1);
+                    timeout = setTimeout(() => {
+                        setTypedString(nextRemaining);
+                    }, mergedOptions.speed);
+                } else {
+                    setCurrentIndex((currentIndex + 1) % inputStrings.length);
 
-                    if (nextTypedString === typedString) {
-                        setPhase(Phase.Pausing)
-                        return
+                    if (!mergedOptions.loop && currentIndex === inputStrings.length - 1) {
+                        return; // Animation ended
                     }
 
-                    const timeout = setTimeout(() => {
-                        setTypedString(nextTypedString)
-                    }, typingInterval)
-
-                    return () => clearTimeout(timeout)
+                    setPhase(Phase.Typing);
                 }
-            case Phase.Deleting:
-                {
-                    if (!typedString) {
-                        const nextIndex = selectedIndex + 1
-                        setSelectedIndex(myString[nextIndex] ? nextIndex : 0)
-                        setPhase(Phase.Typing)
-                        return
-                    }
-
-                    const nextRemaining = myString[selectedIndex].slice(
-                        0,
-                        typedString.length - 1
-                    )
-
-                    const timeout = setTimeout(() => {
-                        setTypedString(nextRemaining)
-                    }, deletingInterval)
-
-                    return () => clearTimeout(timeout)
-                }
+                break;
+            }
             case Phase.Pausing:
-            default:
-                const timeout = setTimeout(() => {
-                    setPhase(Phase.Deleting)
-                }, typingPause)
-
-                return () => clearTimeout(timeout)
+            default: {
+                timeout = setTimeout(() => {
+                    setPhase(Phase.Deleting);
+                }, mergedOptions.delay);
+                break;
+            }
         }
 
-    }, [myString, typedString, phase, selectedIndex])
+        return () => clearTimeout(timeout);
+    }, [typedString, phase, currentIndex, inputStrings, mergedOptions]);
 
-    return { typedString, selectedString: myString[selectedIndex] }
+    const cursor = mergedOptions.cursor || '|';
 
-}
+    return {
+        typedString: typedString + cursor,
+        selectedString: inputStrings[currentIndex],
+    };
+};
