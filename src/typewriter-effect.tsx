@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import "./style.scss"
 
-enum Phase {
-    Typing,
-    Pausing,
-    Deleting,
-}
+const Phase = {
+    Typing: 'Typing',
+    Pausing: 'Pausing',
+    Deleting: 'Deleting',
+};
 
 interface TypewriterOptions {
     speed?: number;
